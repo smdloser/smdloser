@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于自导自演爱造谣的小团体</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+    background: #f7f5f0;
+    color: #1a1a1a;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .header {
+    background: #1a1a1a;
+    color: #f7f5f0;
+    padding: 48px 24px 36px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .header p {
+    color: #aaa;
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* section */
+  .section {
+    margin-top: 52px;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 10px;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  p {
+    margin-bottom: 14px;
+    color: #2a2a2a;
+  }
+
+  /* timeline */
+  .timeline {
+    border-left: 2px solid #ccc;
+    margin: 24px 0;
+    padding-left: 24px;
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #888;
+  }
+
+  .tl-item.highlight::before { background: #c0392b; }
+  .tl-item.blue::before { background: #2980b9; }
+
+  .tl-label {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .tl-text {
+    font-size: 14.5px;
+    line-height: 1.7;
+    background: #fff;
+    border: 1px solid #e5e0d8;
+    padding: 12px 16px;
+    border-radius: 4px;
+  }
+
+  /* callout */
+  .callout {
+    background: #fff8e1;
+    border-left: 4px solid #f0a500;
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: 14px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout.red {
+    background: #fff0f0;
+    border-left-color: #c0392b;
+  }
+
+  .callout.blue {
+    background: #f0f4ff;
+    border-left-color: #2980b9;
+  }
+
+  /* screenshot */
+  .screenshot-wrap {
+    margin: 20px 0;
+    background: #fff;
+    border: 1px solid #e0dbd0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .screenshot-label {
+    background: #f0ede6;
+    padding: 7px 14px;
+    font-size: 12px;
+    color: #666;
+    border-bottom: 1px solid #e0dbd0;
+    letter-spacing: 0.05em;
+  }
+
+  .screenshot-wrap img {
+    width: 100%;
+    display: block;
+  }
+
+  .screenshot-note {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #666;
+    background: #fafaf7;
+    border-top: 1px solid #e0dbd0;
+    line-height: 1.6;
+  }
+
+  /* person card */
+  .person-card {
+    background: #fff;
+    border: 1px solid #e0dbd0;
+    border-radius: 6px;
+    margin: 18px 0;
+    overflow: hidden;
+  }
+
+  .person-header {
+    background: #f5f2eb;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 1px solid #e0dbd0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .person-badge {
+    font-size: 10px;
+    background: #c0392b;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .person-body {
+    padding: 14px 16px;
+  }
+
+  .person-body img {
+    width: 100%;
+    border-radius: 4px;
+    margin: 10px 0;
+  }
+
+  .person-comment {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+
+  /* summary */
+  .summary {
+    background: #1a1a1a;
+    color: #f7f5f0;
+    padding: 32px;
+    margin-top: 48px;
+    border-radius: 6px;
+  }
+
+  .summary h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+    color: #fff;
+  }
+
+  .summary-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.65;
+  }
+
+  .summary-item .num {
+    color: #f0a500;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 15px;
+  }
+
+  mark {
+    background: #ffe58a;
+    padding: 0 2px;
+  }
+
+  strong { font-weight: 600; }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #999;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Section 1 -->
+  <div class="section">
+    <div class="section-tag">起因</div>
+    <h2>对方挂条完全没提事情是怎么开始的，直接跳到"公示投票"，让人以为我们是无缘无故攻击别人。完整的时间线是这样的：</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-text">有人在lxx圈投稿了"万一SLE是柏拉图呢，圈内很多酷儿讨论这个梗不合适，违背了类型学里类型平等的原则。投稿的人自己就撤稿了。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-text">SLE那条刚撤，立刻就有人投了"万一SEE是柏拉图呢"。但是类型学里一个人的类型和ta的其他身份认同本应是无关的，这个时间点紧跟着SLE那条来投，圈内人普遍觉得是故意挑衅。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-text">社区对要不要公示高柱进行了投票。公示出来后发现是个三无小号，跑路了。</div>
+      </div>
+    </div>
+    <div class="callout">
+      对方挂条从来没提过SEE那条投稿的事，直接把公示投票说成我们无端攻击别人。
+    </div>
+
+    <div class="screenshot-wrap">
+      <div class="screenshot-label">魔芋爽鲜奶的发言</div>
+      <style>
+        .img-row {
+          display: flex;
+          gap: 10px;
+        }
+        .img-item {
+          flex: 1;
+          cursor: pointer;
+          position: relative;
+        }
+        .img-item img {
+          width: 100%;
+          border-radius: 4px;
+        }
+        .img-item span {
+          display: block;
+          text-align: center;
+          font-size: 12px;
+          color: #999;
+          margin-top: 4px;
+        }
+        .overlay {
+          display: none;
+          position: fixed;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          background: rgba(0,0,0,0.85);
+          z-index: 999;
+          justify-content: center;
+          align-items: center;
+        }
+        .overlay.active {
+          display: flex;
+        }
+        .overlay img {
+          max-width: 90%;
+          max-height: 90vh;
+          border-radius: 6px;
+        }
+      </style>
+      <div class="img-row">
+        <div class="img-item" onclick="openImg('img1.png')">
+          <img src="img1.png">
+          <span></span>
+        </div>
+        <div class="img-item" onclick="openImg('img2.png')">
+          <img src="img2.png">
+          <span>点击放大</span>
+        </div>
+        <div class="img-item" onclick="openImg('img3.png')">
+          <img src="img3.png">
+          <span></span>
+        </div>
+      </div>
+      <div class="screenshot-note">伽马人被玩梗和酷儿遭歧视放在同一个框架里</div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <div class="section-tag">宽以待己严以律人</div>
+
+    <div class="screenshot-wrap">
+      <div class="screenshot-label">魔芋爽鲜奶发言截图</div>
+      <img src="img4.png" style="width:65%; cursor:pointer;" onclick="openImg('img4.png')">
+      <div style="font-size:12px; color:#999; margin-top:4px;">点击放大</div>
+      <div class="screenshot-note">阿富汗教育禁令比lgbtq+群体的痛苦更多所以lgbtq+不配痛苦吗</div>
+    </div>
+
+    <div class="tl-item">
+      对方一方面批评我们拿伽马人被玩梗去和酷儿遭歧视比，另一方面自己却不停地用阿富汗教育禁令来压LGBTQ+的诉求。。。
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <div class="section-tag">酷儿友好者三角形</div>
+
+    <div class="screenshot-wrap">
+      <div class="screenshot-label">三角形的置顶公告</div>
+      <img src="img5.png" style="width:65%; cursor:pointer;" onclick="openImg('img5.png')">
+      <div style="font-size:12px; color:#999; margin-top:4px;">点击放大</div>
+      <div class="screenshot-note">置顶省流里写有lgbtq+认同的人士……在关注号主前请慎重考虑，挂人时声称酷儿友好但主动把有LGBTQ+认同的人排在不欢迎关注的名单里😂</div>
+    </div>
+
+    <div class="screenshot-wrap">
+      <div class="screenshot-label">三角形plq发言</div>
+      <img src="img6.png" style="width:65%; cursor:pointer;" onclick="openImg('img6.png')">
+      <div style="font-size:12px; color:#999; margin-top:4px;">点击放大</div>
+      <div class="screenshot-note">继续自曝</div>
+    </div>
+
+    <div class="tl-item">
+      对方挂条把三角形放在受到伤害的酷儿友好者一边。但她自己的置顶明确把有LGBTQ+认同的人写成不欢迎的访客。既然自己反酷，装模作样的时候不会嫌恶心吗
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section">
+    <div class="section-tag">无辜网友</div>
+    <p>对方挂条里呈现为无辜受波及的网友的公开发言：</p>
+
+    <!-- 小哈 -->
+    <div class="screenshot-wrap">
+      <div class="screenshot-label">小哈</div>
+      <div class="img-row">
+        <div class="img-item" onclick="openImg('img7.png')">
+          <img src="img7.png">
+          <span>点击放大</span>
+        </div>
+        <div class="img-item" onclick="openImg('img8.png')">
+          <img src="img8.png">
+          <span>点击放大</span>
+        </div>
+        <div class="img-item" onclick="openImg('img9.png')">
+          <img src="img9.png">
+          <span>点击放大</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 小团体 -->
+    <div class="screenshot-wrap">
+      <div class="screenshot-label">小团体</div>
+      <div class="img-row">
+        <div class="img-item" onclick="openImg('img10.png')">
+          <img src="img10.png">
+          <span>点击放大</span>
+        </div>
+        <div class="img-item" onclick="openImg('img11.png')">
+          <img src="img11.png">
+          <span>点击放大</span>
+        </div>
+        <div class="img-item" onclick="openImg('img12.png')">
+          <img src="img12.png">
+          <span>点击放大</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 湖中草仙 -->
+    <div class="screenshot-wrap">
+      <div class="screenshot-label">湖中草仙</div>
+      <div class="img-row">
+        <div class="img-item" onclick="openImg('img13.png')">
+          <img src="img13.png">
+          <span>点击放大</span>
+        </div>
+        <div class="img-item" onclick="openImg('img14.png')">
+          <img src="img14.png">
+          <span>点击放大</span>
+        </div>
+        <div class="img-item" onclick="openImg('img15.png')">
+          <img src="img15.png">
+          <span>点击放大</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <strong>以上是爱酷人士挂条里所说的无辜连坐</strong><br>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <div class="summary-item">
+      <span class="num"></span>
+      <span>所有截图都是对方在公开平台的公开发言，欢迎自行核实。</span>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="overlay" onclick="closeImg()">
+  <img id="bigImg" src="">
+</div>
+<script>
+  function openImg(src) {
+    document.getElementById('bigImg').src = src;
+    document.getElementById('overlay').classList.add('active');
+  }
+  function closeImg() {
+    document.getElementById('overlay').classList.remove('active');
+  }
+</script>
+</body>
+</html>
